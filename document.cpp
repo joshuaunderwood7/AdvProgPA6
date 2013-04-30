@@ -76,15 +76,15 @@ bool document::Insert(unsigned int line_number, std::string input)
 
 bool document::Delete(unsigned int line_number)
 {
-   line_number--;
    line_count = lines.size();
-   if(line_number > line_count) 
+   if(line_number > line_count || line_number == 0) 
    {
-       std::cerr << "error: Delete line " << line_number 
+       std::cerr << "error: Delete line " << line_number
                  << ". Line does not exist" << std::endl;
        return false;
    }
 
+   line_number--;
    std::list<std::string>::iterator it;
    it = lines.begin();
    for(unsigned int i = 0; i < line_number; ++i) it++;
